@@ -99,7 +99,7 @@ class H5NumberInputExample extends React.Component {
 				<WhiteSpace/>
 				<ImagePickerExample></ImagePickerExample>
         <List>
-					<InputItem placeholder='JOB' onChange={(v) => thiis,handleonChange('job',v)}>Job</InputItem>
+					<InputItem placeholder='JOB' onChange={(v) => this.handleonChange('job',v)}>Job</InputItem>
 					<InputItem placeholder='COMPANT' onChange={(v) => this.handleonChange('company',v)}>Company</InputItem>
 					<InputItem placeholder='DEMAND' onChange={(v) => this.handleonChange('demand',v)}>Demand</InputItem>
           <InputItem
