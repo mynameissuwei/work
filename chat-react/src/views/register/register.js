@@ -51,7 +51,7 @@ class Register extends Component{
 						<WhiteSpace/>
 						<RadioItem onChange={()=>this.handleChange('type','SuperHero')}>SuperHero</RadioItem>
 						<WhiteSpace/>
-						<Button type='primary'onClick={() => this.handleRegister()}>submit</Button>
+						<Button type='primary' onClick={() => this.handleRegister()}>submit</Button>
 					</List>
 				</WingBlank>
 			</div>

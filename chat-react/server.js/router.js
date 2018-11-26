@@ -15,6 +15,21 @@ router.get('/list',function(req,res) {
 	})
 })
 
+// router.post('/update',(req,res) => {
+// 	const userid = req.cookies.userid
+// 	if(!userid) {
+// 		return json.dumps({code:1})
+// 	}
+// 	const body = req.body
+// 	User.findByIdAndUpdata(userid,body,function(err,doc){
+// 		const data = Object.assign({},{
+// 			user:doc.user,
+// 			type:doc.type
+// 		},body)
+// 		return res.json({code:0,data})
+// 	})
+// })
+	
 router.use('/info',(req,res) => {
 	const { userid } = req.cookie
 	if(!userid) return res.json({code:1,msg:'no cookie'})

@@ -67,7 +67,7 @@ class ImagePickerExample extends React.Component {
 
 @connect(state => state.user,{ update })
 
-class H5NumberInputExample extends React.Component {
+class Human extends React.Component {
 
 	constructor() {
 		super(...arguments)
@@ -96,7 +96,7 @@ class H5NumberInputExample extends React.Component {
 	}
 
 	handleSave = () => {
-		this.props.update(this.state)
+    this.props.update(this.state)
 	}
 
   render() {
@@ -109,16 +109,7 @@ class H5NumberInputExample extends React.Component {
 				<AvatarSelector selectAvator={this.selectAvator}></AvatarSelector>
         <List>
 					<InputItem placeholder='JOB' onChange={(v) => this.handleonChange('job',v)}>Job</InputItem>
-					<InputItem placeholder='COMPANT' onChange={(v) => this.handleonChange('company',v)}>Company</InputItem>
-					<TextareaItem placeholder='please input your demand' onChange={(v) => this.handleonChange('demand',v)} title='demand' rows={3} autoHeight></TextareaItem>
-          <InputItem
-            type={type}
-            placeholder="start from right"
-            clear
-            onChange={(v) => this.handleonChange('salary',v)}
-            onBlur={(v) => { console.log('onBlur', v); }}
-            moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-          >Salary</InputItem>
+					<TextareaItem placeholder='please input your individual resume' onChange={(v) => this.handleonChange('demand',v)} title='demand' rows={3} autoHeight></TextareaItem>
 					<Button type='primary' onClick={this.handleSave}>save</Button>
           </List>
       </div>
@@ -127,6 +118,6 @@ class H5NumberInputExample extends React.Component {
 }
 
 
-const H5NumberInputExampleWrapper = createForm()(H5NumberInputExample);
+const HumanInfo = createForm()(Human);
 
-export { H5NumberInputExampleWrapper }
+export { HumanInfo }
