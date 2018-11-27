@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
-import { user } from './redux/user-redux.js'
+import { user } from './redux/user-redux'
 
-const reducer = combineReducers({user})
-export { reducer }
+const reducers = combineReducers({user})
+
+export default reducers

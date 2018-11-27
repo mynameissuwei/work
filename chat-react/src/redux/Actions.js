@@ -1,42 +1,42 @@
 import * as ActionTypes from './ActionTypes.js'
 import axios from 'axios'
 
-function registerSuccess(data) {
-	return {type:ActionTypes.success,payload:data}
+const registerSuccess = (data) => {
+	return {type:ActionTypes.Rsuccess,payload:data}
 }
 
-function LoginSuccess(data) {
+const LoginSuccess = (data) => {
 	return {type:ActionTypes.Lsuccess,payload:data}
 }
 
-function authSuccess(data){
+const authSuccess = (data) => {
 	return {type:ActionTypes.Asuccess,payload:data}
 }
 
-function errorMsg(msg) {
-	return {msg,type:ActionTypes.error}
+const errorMsg = (msg)  => {
+	return {type:ActionTypes.error,msg}
 }
 
-
-
-function register({user,pwd,rpwd,type}) {
+const register = ({user,pwd,rpwd,type}) => {
+	console.log('it works')
 	if(!user||!pwd||!type) {
-		return errorMsg('complete information')
-	}
-	if(pwd!==rpwd) {
-		return errorMsg('confirm your password')
-	}
-	return dispatch=>{
-		axios.post('/user/register',{user,pwd,type})
-			.then(res=>{
-				if(res.status==200&&res.data.code==0) {
+		return errorMsg('you should input the intact data')
+	} else if(pwd != rpwd) {
+		return errorMsg('pwd and rpwd should be the same')
+	} else {
+		return dispatch => {
+			axios.post('/info',{user,pwd,type}).then(res => {
+				if(res.status == 200 && res.data.code == 0) {
 					dispatch(registerSuccess({user,pwd,type}))
-				}else{
+				} else {
 					dispatch(errorMsg(res.data.msg))
 				}
-		})
+			})
+		}
 	}
 }
+
+
 
 function update(data) {
 	return dispatch => {

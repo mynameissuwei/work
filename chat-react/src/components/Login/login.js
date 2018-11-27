@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { LogoBatman } from '../../component/logoimg.js'
+import { LogoBatman } from '../logoImage/logoimg'
 import { WingBlank,WhiteSpace,List,InputItem,Button } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'

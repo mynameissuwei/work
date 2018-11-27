@@ -6,7 +6,6 @@ const ERROR_MSG = 'ERROR_MSG'
 
 const initState={
 	isAuth:false,
-	redirectTo:'',
 	msg:'',
 	user:'',
 	pwd:'',
@@ -15,12 +14,12 @@ const initState={
 
 export const user = (state = initState,action) => {
 	switch(action.type)  {
-		case ActionsTypes.success :
-			return {...state,msg:'',redirectTo:getRedirectPath(action.payload),isAuth:true,...action.payload}
+		case ActionsTypes.Rsuccess :
+			return {...state,msg:'',isAuth:true,...action.payload}
 		case ActionsTypes.Lsuccess :
-			return {...state,msg:'',redirectTo:getRedirectPath(action.payload),isAuth:true,...action.payload}
+			return {...state,msg:'',isAuth:true,...action.payload}
 		case ActionsTypes.Asuccess :
-			return {...state,msg:'',redirectTo:getRedirectPath(action.payload),...action.payload}
+			return {...state,msg:'',...action.payload}
 		case ActionsTypes.error :
 			return {...state,isAuth:false,msg:action.msg}
 		default:

@@ -31,12 +31,13 @@ router.get('/list',function(req,res) {
 // })
 	
 router.use('/info',(req,res) => {
-	const { userid } = req.cookie
-	if(!userid) return res.json({code:1,msg:'no cookie'})
-	User.findOne({_id:userid},(e,d) => {
-		if(e) return res.json({code:1,msg:'no data in database'})
-		if(d) return res.json({code:0,data:d})
-	})
+	// const { userid } = req.cookie
+	// if(!userid) return res.json({code:1,msg:'no cookie'})
+	// User.findOne({_id:userid},(e,d) => {
+	// 	if(e) return res.json({code:1,msg:'no data in database'})
+	// 	if(d) return res.json({code:0,data:d})
+	// })
+	return res.json({code:1})
 })
 
 router.use('/login',(req,res) => {

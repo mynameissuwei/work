@@ -1,17 +1,16 @@
 import React,{ Component } from 'react'
-import { LogoSpider	 } from '../../component/logoimg.js'
+import { LogoSpider	} from '../logoImage/logoimg'
 import { List,InputItem,Button,WhiteSpace,WingBlank,Radio } from 'antd-mobile' 
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { register } from '../../redux/Actions.js'
-import '../../index.css'
 
 @connect((state) => state.user,
 	{register})
 
 class Register extends Component{
 
-	constructor(props) {
+	constructor(props) { 
 		super(props)
 		this.state = {
 			user:'',
@@ -31,9 +30,13 @@ class Register extends Component{
 		})
 	}
 
+	componentDidMount() {
+		console.log(this.state.type)
+	}
+
 	render() {
 		const RadioItem = Radio.RadioItem
-
+		console.log(this.state.type)
 		return (
 			<div>
 				{this.props.redirectTo?<Redirect to={this.props.redirectTo}></Redirect>:null}
@@ -49,7 +52,7 @@ class Register extends Component{
 						<WhiteSpace/>
 						<RadioItem checked={this.state.type == 'Human'} onChange={()=>this.handleChange('type','Human')}>Human</RadioItem>
 						<WhiteSpace/>
-						<RadioItem onChange={()=>this.handleChange('type','SuperHero')}>SuperHero</RadioItem>
+						<RadioItem checked={this.state.type == 'SuperHero'} onChange={()=>this.handleChange('type','SuperHero')}>SuperHero</RadioItem>
 						<WhiteSpace/>
 						<Button type='primary' onClick={() => this.handleRegister()}>submit</Button>
 					</List>
