@@ -7,7 +7,10 @@ import { BrowserRouter,Route,Link,Switch,Redirect } from 'react-router-dom'
 //component
 import Login from './components/Login/login'
 import Register from './components/Register/register'
-import AuthRoute from './components/AuthRoute/AuthRoute' 
+import AuthRoute from './components/AuthRoute/AuthRoute'
+//container
+import { HumanInfo } from './container/HumanInfo/human'
+import { H5NumberInputExampleWrapper } from './container/SuperHeroInfo/SuperHero'
 //reducer
 import reducers from './reducer'
 //axios intercept
@@ -25,6 +28,8 @@ ReactDOM.render(
           <AuthRoute></AuthRoute>
 					<Route path='/login' component={Login} exact></Route>
 					<Route path='/register' component={Register}></Route>
+					<Route path='/HumanInfo' component={HumanInfo}></Route>
+					<Route path='/SuperHeroinfo' component={H5NumberInputExampleWrapper}></Route>
 			</div>
 		</BrowserRouter>
 	</Provider>,

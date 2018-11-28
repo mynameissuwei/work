@@ -17,7 +17,7 @@ class Register extends Component{
 			pwd:'',
 			rpwd:'',
 			type:'Human'
-		}
+		} 
 	}
 
 	handleRegister() {
@@ -30,13 +30,9 @@ class Register extends Component{
 		})
 	}
 
-	componentDidMount() {
-		console.log(this.state.type)
-	}
 
 	render() {
 		const RadioItem = Radio.RadioItem
-		console.log(this.state.type)
 		return (
 			<div>
 				{this.props.redirectTo?<Redirect to={this.props.redirectTo}></Redirect>:null}

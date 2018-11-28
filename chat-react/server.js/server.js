@@ -5,9 +5,9 @@ const cookieParser = require('cookie-parser')
 const app = express()
 const port = 8090
 
-app.use(bodyParser.json())
-
 app.use(cookieParser())
+
+app.use(bodyParser.json())
 
 app.use('/user',router)
 

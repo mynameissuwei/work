@@ -18,14 +18,13 @@ const errorMsg = (msg)  => {
 }
 
 const register = ({user,pwd,rpwd,type}) => {
-	console.log('it works')
 	if(!user||!pwd||!type) {
 		return errorMsg('you should input the intact data')
 	} else if(pwd != rpwd) {
 		return errorMsg('pwd and rpwd should be the same')
 	} else {
 		return dispatch => {
-			axios.post('/info',{user,pwd,type}).then(res => {
+			axios.post('/user/register',{user,pwd,type}).then(res => {
 				if(res.status == 200 && res.data.code == 0) {
 					dispatch(registerSuccess({user,pwd,type}))
 				} else {
@@ -38,9 +37,9 @@ const register = ({user,pwd,rpwd,type}) => {
 
 
 
-function update(data) {
+const update = (data) => {
 	return dispatch => {
-		axios.post('/user/update',data).then(res=>{
+		axios.post('/user/update',data).then(res => {
 			if(res.status==200&&res.data.code==0) {
 				dispatch(authSuccess(res.data.data))
 			} else {
@@ -50,7 +49,7 @@ function update(data) {
 	}
 }
 
-function login({user,pwd}) {
+const login = ({user,pwd}) => {
 	if(!user||!pwd) {
 		return errorMsg('complete information')
 	}
