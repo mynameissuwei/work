@@ -11,6 +11,7 @@ import AuthRoute from './components/AuthRoute/AuthRoute'
 //container
 import { HumanInfo } from './container/HumanInfo/human'
 import { H5NumberInputExampleWrapper } from './container/SuperHeroInfo/SuperHero'
+import { DashBar } from './container/Boss/boss'
 //reducer
 import reducers from './reducer'
 //axios intercept
@@ -21,15 +22,20 @@ const store = createStore(reducers,compose(
   window.devToolsExtension?window.devToolsExtension():() => {}
 ))
 
+
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
 			<div>
           <AuthRoute></AuthRoute>
-					<Route path='/login' component={Login} exact></Route>
-					<Route path='/register' component={Register}></Route>
-					<Route path='/HumanInfo' component={HumanInfo}></Route>
-					<Route path='/SuperHeroinfo' component={H5NumberInputExampleWrapper}></Route>
+					<Switch>
+						<Route path='/login' component={Login} exact></Route>
+						<Route path='/register' component={Register}></Route>
+						<Route path='/HumanInfo' component={HumanInfo}></Route>
+						<Route path='/SuperHeroinfo' component={H5NumberInputExampleWrapper}></Route>
+						<Route path='/Human' component={DashBar}></Route>
+						<Route component={ DashBar }></Route>
+				</Switch>
 			</div>
 		</BrowserRouter>
 	</Provider>,
