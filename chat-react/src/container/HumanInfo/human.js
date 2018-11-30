@@ -113,7 +113,7 @@ class Human extends React.Component {
           </List>
       </div>
     );
-  }
+  } 
 }
 
 

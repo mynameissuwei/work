@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { createStore,applyMiddleware,compose } from 'redux'
 import { Provider } from 'react-redux'
 import  thunk from 'redux-thunk'
-import { BrowserRouter,Route,Link,Switch,Redirect } from 'react-router-dom'
+import { BrowserRouter as Router,Route,Link,Switch,Redirect } from 'react-router-dom'
 //component
 import Login from './components/Login/login'
 import Register from './components/Register/register'
@@ -25,19 +25,18 @@ const store = createStore(reducers,compose(
 
 ReactDOM.render(
 	<Provider store={store}>
-		<BrowserRouter>
+		<Router>
 			<div>
           <AuthRoute></AuthRoute>
 					<Switch>
 						<Route path='/login' component={Login} exact></Route>
 						<Route path='/register' component={Register}></Route>
-						<Route path='/HumanInfo' component={HumanInfo}></Route>
-						<Route path='/SuperHeroinfo' component={H5NumberInputExampleWrapper}></Route>
-						<Route path='/Human' component={DashBar}></Route>
+						<Route path='/geniusinfo' component={HumanInfo}></Route>
+						<Route path='/bossinfo' component={H5NumberInputExampleWrapper}></Route>
 						<Route component={ DashBar }></Route>
-				</Switch>
+					</Switch>
 			</div>
-		</BrowserRouter>
+		</Router>
 	</Provider>,
 	document.getElementById('root')
 )

@@ -16,7 +16,7 @@ class Register extends Component{
 			user:'',
 			pwd:'',
 			rpwd:'',
-			type:'Human'
+			type:'genius'
 		} 
 	}
 
@@ -46,9 +46,9 @@ class Register extends Component{
 						<WhiteSpace/>
 						<InputItem placeholder='confirm' onChange={(v)=>this.handleChange('rpwd',v)}>confirm</InputItem>
 						<WhiteSpace/>
-						<RadioItem checked={this.state.type == 'Human'} onChange={()=>this.handleChange('type','Human')}>Human</RadioItem>
+						<RadioItem checked={this.state.type == 'genius'} onChange={()=>this.handleChange('type','genius')}>Genius</RadioItem>
 						<WhiteSpace/>
-						<RadioItem checked={this.state.type == 'SuperHero'} onChange={()=>this.handleChange('type','SuperHero')}>SuperHero</RadioItem>
+						<RadioItem checked={this.state.type == 'boss'} onChange={()=>this.handleChange('type','boss')}>Boss</RadioItem>
 						<WhiteSpace/>
 						<Button type='primary' onClick={() => this.handleRegister()}>submit</Button>
 					</List>

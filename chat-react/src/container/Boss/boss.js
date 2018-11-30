@@ -1,30 +1,16 @@
 import React from 'react'
 import { NavBar,Icon } from 'antd-mobile'
 import { connect } from 'react-redux';
+import { BrowserRouter as Router,Route,Link,Switch,Redirect } from 'react-router-dom'
+//components
 import { BottomBar } from '../../components/BottomBar/BottomBar';
+import { TabBarExample } from '../../components/Bottom/Bottom'
+import { Human } from '../../components/human/human'
+import { Boss } from '../../components/genius/genius'
+import { Msg } from '../../components/msg/msg'
+import { Me } from '../../components/me/me'
 
-const boss = () => {
-  return <h1>this is ok</h1>
-}
-
-const Human = () => {
-  return <h1>this is good</h1>
-}
-
-const Genius = () => {
-  return <h1>Genius</h1>
-}
-
-const Msg = () => {
-  return <h1>Msg</h1>
-}
-
-const User = () => {
-  return <h1>User</h1>
-}
-
-@connect(state => state)
-
+@connect(state => state.user)
 class DashBar extends React.Component {
 
   constructor() {
@@ -33,56 +19,61 @@ class DashBar extends React.Component {
 
   render() {
     const pathname = this.props.location.pathname
-    const user = this.props.user
+    const  userType = this.props.type
     const data = [
       { 
         path:'/human',
         title:'Human',
         icon:'human',
-        text:'牛人',
-        Component:Human,
-        hide:user.type == 'human'
+        key:1,
+        hide:true 
       },
       {
         path:'/genius',
         title:'Genius',
-        icon:'job',
-        title:'BOSS列表',
-        Component:Genius,
-        hide:user.type=='genius'
+        icon:'human',
+        key:2,
+        title:'BOSS list',
+        hide:userType=='boss'
       },
       {
         path:'/msg',
-        text:'message',
-        icon:'msg',
+        key:3,
+        icon:'classic',
         title:'message list',
-        Component:Msg
       },
       {
         path:'/me',
         text:'me',
-        icon:'user',
-        title:'个人中心',
-        Component:User
+        icon:'my',
+        key:4,
+        title:'me',
       }
     ]
 
 
     return (
-      <div>
-        <NavBar
-          mode="light"
-          icon={<Icon type="left" />}
-          onLeftClick={() => console.log('onLeftClick')}
-          rightContent={[
-            <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-            <Icon key="1" type="ellipsis" />,
-          ]}
-        >{ data.find(item => item.path == pathname).title  }</NavBar>
-      
-        <BottomBar list={data}></BottomBar>
-
-      </div>
+      <Router>
+        <div>
+          <NavBar
+            mode="light"
+            icon={<Icon type="left" />}
+            onLeftClick={() => console.log('onLeftClick')}
+            rightContent={[
+              <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+              <Icon key="1" type="ellipsis" />,
+            ]}
+          >{ data.find(item => item.path == pathname).title  }
+          </NavBar>
+          
+          <Route path='/human' component={Human}></Route>
+          <Route path='/genius' component={Boss}></Route>
+          <Route path='/msg' component={Msg}></Route>
+          <Route path='/me' component={Me}></Route>
+            
+          <TabBarExample list={data}></TabBarExample>        
+        </div>
+      </Router>
     )
   }
 }
