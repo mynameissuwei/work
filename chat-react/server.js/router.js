@@ -10,6 +10,7 @@ const Utility = (pwd) => {
 
 router.get('/list',function(req,res) {
 	// User.remove({},(err,doc)=>{})
+	// const type = req.query
 	User.find({},function(err,doc){
 		return res.json(doc)
 	})
@@ -17,11 +18,12 @@ router.get('/list',function(req,res) {
 
 router.post('/update',(req,res) => {
 	const userid = req.cookies.userid
-	if(!userid) {
-		return json.dumps({code:1})
-	}
+	// if(!userid) {
+	// 	return json.dumps({code:1})
+	// }
 	const body = req.body
 	User.findByIdAndUpdate(userid,body,function(err,doc){
+		co
 		const data = Object.assign({},{
 			user:doc.user,
 			type:doc.type
