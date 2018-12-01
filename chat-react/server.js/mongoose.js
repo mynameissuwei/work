@@ -37,12 +37,11 @@ const models = {
 		'user':{type:String, require:true},
 		'pwd':{type:String, require:true},
 		'type':{type:String, require:true},
-		'avatar':{type:String},
-		'desc':{type:String},
-		'nickname':{type:String}, 
-		'hobby':{type:String}, 
-		'location':{type:String},
-		'age':{type:String}	
+		'avator':{type:String},
+		'job':{type:String},
+		'demand':{type:String}, 
+		'company':{type:String}, 
+		'salary':{type:String},	
 	},
 	chat:{
 

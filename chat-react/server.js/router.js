@@ -10,27 +10,29 @@ const Utility = (pwd) => {
 
 router.get('/list',function(req,res) {
 	// User.remove({},(err,doc)=>{})
-	// const type = req.query
-	User.find({},function(err,doc){
+	const { type } = req.query
+	User.find({type},function(err,doc){
 		return res.json(doc)
 	})
 })
 
 router.post('/update',(req,res) => {
 	const userid = req.cookies.userid
-	// if(!userid) {
-	// 	return json.dumps({code:1})
-	// }
-	const body = req.body
-	User.findByIdAndUpdate(userid,body,function(err,doc){
-		co
-		const data = Object.assign({},{
-			user:doc.user,
-			type:doc.type
-		},body)
-		return res.json({code:0,data})
+	console.log(userid)
+	// User.findByIdAndUpdate(userid,body,function(err,doc){
+	// 	const data = Object.assign({},{
+	// 		user:doc.user,
+	// 		type:doc.type
+	// 	},body)
+	// 	return res.json({code:0,data})
+	// })
+	User.findOneAndUpdate({_id:userid},req.body,{ new: true },(e,d) => {
+		console.log(d)
+		return res.json({code:0,data:d})
 	})
 })
+
+
 	
 router.use('/info',(req,res) => {
 	const { userid } = req.cookies
@@ -45,10 +47,16 @@ router.use('/register',(req,res) => {
 	const { user,pwd,type } = req.body
 	User.findOne({user},(e,d) => {
 		if(d) return res.json({code:1,msg:'用户名重复,请从新输入用户名'})
-			User.create({user,pwd,type},(e,d) => {
-				if(e) return res.json({code:1,msg:'创建用户数据错误'})
-					return res.json({code:0})
-			})
+
+		const userModel = new User({user,type,pwd})
+		userModel.save(function(e,d){
+			if(e) {
+				return res.json({code:1,msg:'后端出错了'})
+			}
+			const { user,type,_id } = d
+			res.cookie('userid',_id)
+			return res.json({code:0,data:{user,type,_id}})
+		})
 	})
 })
 

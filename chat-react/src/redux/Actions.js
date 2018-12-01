@@ -66,3 +66,5 @@ const login = ({user,pwd}) => {
 }
 
 export { register,login,update }
+
+

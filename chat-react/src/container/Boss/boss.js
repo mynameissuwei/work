@@ -22,9 +22,9 @@ class DashBar extends React.Component {
     const  userType = this.props.type
     const data = [
       { 
-        path:'/human',
-        title:'Human',
-        icon:'human',
+        path:'/boss',
+        title:'Boss',
+        icon:'boss',
         key:1,
         hide:true 
       },
@@ -66,7 +66,7 @@ class DashBar extends React.Component {
           >{ data.find(item => item.path == pathname).title  }
           </NavBar>
           
-          <Route path='/human' component={Human}></Route>
+          <Route path='/boss' component={Human}></Route>
           <Route path='/genius' component={Boss}></Route>
           <Route path='/msg' component={Msg}></Route>
           <Route path='/me' component={Me}></Route>
