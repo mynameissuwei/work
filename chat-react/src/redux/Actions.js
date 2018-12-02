@@ -17,6 +17,8 @@ const errorMsg = (msg)  => {
 	return {type:ActionTypes.error,msg}
 }
 
+
+
 const register = ({user,pwd,rpwd,type}) => {
 	if(!user||!pwd||!type) {
 		return errorMsg('you should input the intact data')
@@ -65,6 +67,10 @@ const login = ({user,pwd}) => {
 	}
 }
 
-export { register,login,update }
+const tochSuccess = (data) => {
+	return {type:ActionTypes.Tsuccess,payload:data}
+}
+
+export { register,login,update,tochSuccess }
 
 

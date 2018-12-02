@@ -11,16 +11,15 @@ class AvatarSelector extends Component {
   }
 
   render() {
-    console.log(this.state.avator)
-    const data = '3,4,5'.split(',').map(item => ({
-      icon:require(`../avator-image/${item}.jpg`),
+    const data = '1,2,3,4,5,6,7,8,9,10'.split(',').map(item => ({
+      icon:require(`../avator-image/${item}.png`),
       text:item
     }))
     const gridHeader = this.state.hasAvator? (<div>
       <span>your avator is</span>
       <img src={this.state.avator} style={{width:20}}/>
     </div>) : (<div>
-      <span>please choose your image</span>
+      <span>CHOOSE AVATOR</span>
     </div>)
     return (
       <div>

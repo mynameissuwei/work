@@ -2,14 +2,15 @@ import React from 'react'
 import axios from 'axios'
 import { WingBlank,WhiteSpace,Card } from 'antd-mobile'
 import { connect } from 'react-redux' 
-
+import { withRouter } from 'react-router-dom'
 import { tochSuccess } from '../../redux/Actions'
 
+@withRouter 
 @connect(
   state => state.person,
   { tochSuccess }
 )
-class Genius extends React.Component {
+class UserInfo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -44,7 +45,7 @@ class Genius extends React.Component {
                 <div>{item.demand}</div>
               </Card.Body>
 
-              <Card.Footer content="大喵培训班" extra={<div>荣誉学员</div>} />  
+              <Card.Footer content="大喵" extra={<div>荣誉学员</div>} />  
             </Card>
             <WhiteSpace size="sm" />
           </div>
@@ -54,4 +55,4 @@ class Genius extends React.Component {
   }
 }
 
-export { Genius }
+export { UserInfo }

@@ -17,19 +17,22 @@ import reducers from './reducer'
 //axios intercept
 import './config'
 
+
+
 const store = createStore(reducers,compose(
   applyMiddleware(thunk),
-  window.devToolsExtension?window.devToolsExtension():() => {}
+	window.devToolsExtension?window.devToolsExtension():() => {}
 ))
 
+  
 
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
 			<div>
-          <AuthRoute></AuthRoute>
+					<AuthRoute></AuthRoute>
 					<Switch>
-						<Route path='/login' component={Login} exact></Route>
+						<Route path='/' component={Login} exact></Route>
 						<Route path='/register' component={Register}></Route>
 						<Route path='/geniusinfo' component={HumanInfo}></Route>
 						<Route path='/bossinfo' component={H5NumberInputExampleWrapper}></Route>

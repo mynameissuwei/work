@@ -4,7 +4,7 @@ import { getRedirectPath } from '../util'
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 const ERROR_MSG = 'ERROR_MSG'
 
-const initState={
+const UserInitState = {
 	isAuth:false,
 	msg:'',
 	user:'',
@@ -13,7 +13,11 @@ const initState={
 	redirectTo:''
 }
 
-export const user = (state = initState,action) => {
+const PersonInitState = {
+	data:[]
+}
+
+const user = (state = UserInitState,action) => {
 	switch(action.type)  {
 		case ActionsTypes.Rsuccess :
 			return {...state,msg:'',redirectTo:getRedirectPath(action.payload),isAuth:true,...action.payload}
@@ -27,4 +31,16 @@ export const user = (state = initState,action) => {
 			return state
 	}
 }
+
+const person = (state = PersonInitState,action) => {
+	switch(action.type) {
+		case ActionsTypes.Tsuccess :
+			return {...state,data:action.payload}
+		default :
+			return state
+	}
+}
+
+export { user,person }
+
 

@@ -5,36 +5,35 @@ import { BrowserRouter as Router,Route,Link,Switch,Redirect } from 'react-router
 //components
 import { BottomBar } from '../../components/BottomBar/BottomBar';
 import { TabBarExample } from '../../components/Bottom/Bottom'
-import { Human } from '../../components/human/human'
-import { Boss } from '../../components/genius/genius'
+import { Boss } from '../../components/Boss/Boss'
+import { Genius } from '../../components/genius/genius'
 import { Msg } from '../../components/msg/msg'
 import { Me } from '../../components/me/me'
 
 @connect(state => state.user)
 class DashBar extends React.Component {
-
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   render() {
     const pathname = this.props.location.pathname
-    const  userType = this.props.type
+    const userType = pathname
     const data = [
       { 
         path:'/boss',
         title:'Boss',
         icon:'boss',
         key:1,
-        hide:true 
+        hide:userType != '/boss'
       },
       {
         path:'/genius',
         title:'Genius',
         icon:'human',
         key:2,
-        title:'BOSS list',
-        hide:userType=='boss'
+        title:'Genius',
+        hide:userType != '/genius'
       },
       {
         path:'/msg',
@@ -48,7 +47,7 @@ class DashBar extends React.Component {
         icon:'my',
         key:4,
         title:'me',
-      }
+      },
     ]
 
 
@@ -66,12 +65,13 @@ class DashBar extends React.Component {
           >{ data.find(item => item.path == pathname).title  }
           </NavBar>
           
-          <Route path='/boss' component={Human}></Route>
+          <Route path='/boss' component={Genius}></Route>
           <Route path='/genius' component={Boss}></Route>
           <Route path='/msg' component={Msg}></Route>
           <Route path='/me' component={Me}></Route>
             
           <TabBarExample list={data}></TabBarExample>        
+
         </div>
       </Router>
     )
