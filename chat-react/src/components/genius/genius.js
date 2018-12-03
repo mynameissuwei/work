@@ -3,6 +3,7 @@ import axios from 'axios'
 import { WingBlank,WhiteSpace,Card } from 'antd-mobile'
 import { connect } from 'react-redux' 
 
+import { UserInfo } from '../userInfo/userInfo'
 import { tochSuccess } from '../../redux/Actions'
 
 @connect(
@@ -21,35 +22,14 @@ class Genius extends React.Component {
     const pathname = this.props.location.pathname
     const userType = pathname.slice(1)
     console.log(userType)
-    axios.get(`/user/list?type=${userType}`).then(res => {
+    axios.get(`/user/list?type=genius`).then(res => {
       this.props.tochSuccess(res.data)
     })
   }
 
   render() {
     return(
-      <WingBlank>
-        <WhiteSpace size="lg" />
-        {this.props.data.map(item => 
-          <div key={item._id}>
-            <WhiteSpace size="sm" />
-            <Card>
-              <Card.Header 
-              title={item.user}
-              thumb={require(`../../images/${item.avator}.png`)}
-              extra={<span>{item.job}</span>}	
-              >
-              </Card.Header>
-              <Card.Body>
-                <div>{item.demand}</div>
-              </Card.Body>
-
-              <Card.Footer content="大喵培训班" extra={<div>荣誉学员</div>} />  
-            </Card>
-            <WhiteSpace size="sm" />
-          </div>
-        )}
-      </WingBlank>
+      <UserInfo></UserInfo>
     )
   }
 }

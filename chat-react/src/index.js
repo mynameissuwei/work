@@ -30,14 +30,14 @@ ReactDOM.render(
 	<Provider store={store}>
 		<Router>
 			<div>
-					<AuthRoute></AuthRoute>
-					<Switch>
-						<Route path='/' component={Login} exact></Route>
-						<Route path='/register' component={Register}></Route>
-						<Route path='/geniusinfo' component={HumanInfo}></Route>
-						<Route path='/bossinfo' component={H5NumberInputExampleWrapper}></Route>
-						<Route component={ DashBar }></Route>
-					</Switch>
+				<AuthRoute></AuthRoute>
+				<Switch>
+					<Route path='/' component={Login} exact></Route>
+					<Route path='/register' component={Register}></Route>
+					<Route path='/geniusinfo' component={HumanInfo}></Route>
+					<Route path='/bossinfo' component={H5NumberInputExampleWrapper}></Route>
+					<Route component={ DashBar }></Route>
+				</Switch>
 			</div>
 		</Router>
 	</Provider>,

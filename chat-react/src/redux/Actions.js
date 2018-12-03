@@ -37,8 +37,6 @@ const register = ({user,pwd,rpwd,type}) => {
 	}
 }
 
-
-
 const update = (data) => {
 	return dispatch => {
 		axios.post('/user/update',data).then(res => {
@@ -71,6 +69,10 @@ const tochSuccess = (data) => {
 	return {type:ActionTypes.Tsuccess,payload:data}
 }
 
-export { register,login,update,tochSuccess }
+const loadData = (data) => {
+	return {type:ActionTypes.Xsuccess,payload:data}
+}
+
+export { register,login,update,tochSuccess,loadData }
 
 

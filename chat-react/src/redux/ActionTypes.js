@@ -3,5 +3,6 @@ const error = 'ERROR_MSG'
 const Lsuccess = 'LOGIN_SUCCESS'
 const Asuccess = 'AUTH_SUCCESS'
 const Tsuccess = 'TOCH_SUCCESS'
+const Xsuccess = 'LOAD_SUCCESS'
 
-export { Rsuccess,error,Lsuccess,Asuccess,Tsuccess }
+export { Rsuccess,Lsuccess,Asuccess,Tsuccess,Xsuccess,error }

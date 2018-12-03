@@ -18,22 +18,22 @@ class DashBar extends React.Component {
 
   render() {
     const pathname = this.props.location.pathname
-    const userType = pathname
+    const userType = this.props.type
     const data = [
       { 
         path:'/boss',
-        title:'Boss',
+        title:'Genius',
         icon:'boss',
         key:1,
-        hide:userType != '/boss'
+        hide:userType != 'boss'
       },
       {
         path:'/genius',
-        title:'Genius',
+        title:'Boss',
         icon:'human',
         key:2,
         title:'Genius',
-        hide:userType != '/genius'
+        hide:userType != 'genius'
       },
       {
         path:'/msg',

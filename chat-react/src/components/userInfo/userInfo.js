@@ -14,15 +14,24 @@ class UserInfo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data:[]
+      data:[],
+      path:''
     }
   } 
 
-  componentWillMount() {
+  componentDidMount() {
     const pathname = this.props.location.pathname
     const userType = pathname.slice(1)
-    console.log(userType)
-    axios.get(`/user/list?type=${userType}`).then(res => {
+    var path = ''
+    if(userType == 'genius') {
+      path = 'boss'
+    } else {
+      path = 'genius'
+    }
+    this.setState({
+      path
+    })
+    axios.get(`/user/list?type=${path}`).then(res => {
       this.props.tochSuccess(res.data)
     })
   }
@@ -38,14 +47,20 @@ class UserInfo extends React.Component {
               <Card.Header 
               title={item.user}
               thumb={require(`../../images/${item.avator}.png`)}
-              extra={<span>{item.job}</span>}	
+              extra={<span>Job:{item.job}</span>}	
               >
               </Card.Header>
               <Card.Body>
-                <div>{item.demand}</div>
+                <div>Demand:{item.demand}</div>
+                {this.state.path == 'boss'? <div>
+                                              <p>Company:{item.company}</p>
+                                              <p>salary:{item.salary}</p>
+                                            </div> : null
+                }
               </Card.Body>
-
-              <Card.Footer content="大喵" extra={<div>荣誉学员</div>} />  
+              {this.state.path == 'boss' ? <Card.Footer content="su" extra={<div>wei</div>} /> : 
+                                           <Card.Footer content="wang" extra={<div>huan </div>} />    
+              }  
             </Card>
             <WhiteSpace size="sm" />
           </div>
