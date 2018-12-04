@@ -36,14 +36,19 @@ class UserInfo extends React.Component {
     })
   }
 
+  handle(v) {
+    this.props.history.push(`chat/${v.user}`)
+    window.location.href = window.location.href
+  }
+
   render() {
     return(
       <WingBlank>
         <WhiteSpace size="lg" />
         {this.props.data.map(item => 
           <div key={item._id}>
-            <WhiteSpace size="sm" />
-            <Card>
+            <WhiteSpace size="sm"/>
+            <Card onClick={ (e) => this.handle(item,e) }>
               <Card.Header 
               title={item.user}
               thumb={require(`../../images/${item.avator}.png`)}

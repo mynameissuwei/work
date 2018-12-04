@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const model = require('./mongoose')
 const User = model.getModel('user')
+const Chat = model.getModel('chat')
 const utility = require('utility')
 
 const Utility = (pwd) => {
@@ -18,14 +19,6 @@ router.get('/list',function(req,res) {
 
 router.post('/update',(req,res) => {
 	const userid = req.cookies.userid
-	console.log(userid)
-	// User.findByIdAndUpdate(userid,body,function(err,doc){
-	// 	const data = Object.assign({},{
-	// 		user:doc.user,
-	// 		type:doc.type
-	// 	},body)
-	// 	return res.json({code:0,data})
-	// })
 	User.findOneAndUpdate({_id:userid},req.body,{ new: true },(e,d) => {
 		console.log(d)
 		return res.json({code:0,data:d})
@@ -70,17 +63,13 @@ router.use('/login',(req,res) => {
 })
 
 
-// router.post('/register',(req,res) => {
-// 	console.log(req.body)
-// 	const { user,pwd,type } = req.body
-// 	User.findOne({user},(err,doc) => {
-// 		if(doc) return res.json({code:1,msg:'username repeat'})
-// 			User.create({user,pwd:Utility(pwd),type},(e,d) => {
-// 				if(e) return res.json({code:1,msg:'data wrong'})
-// 					return res.json({code:0})
-// 			})
-// 	})
-// })
+router.use('/msgList',(req,res) => {
+	Chat.find({},(e,d) => {
+		if(!e) {
+			return res.json({code:0,chatMsg:d})
+		}
+	})
+})
 
 
 

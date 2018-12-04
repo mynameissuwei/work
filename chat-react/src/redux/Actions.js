@@ -73,6 +73,26 @@ const loadData = (data) => {
 	return {type:ActionTypes.Xsuccess,payload:data}
 }
 
-export { register,login,update,tochSuccess,loadData }
+const logoutSuccess = () => {
+	return {type:ActionTypes.Fsuccess}
+}
 
+//chat-msg 
+
+const msgList = (data) => {
+	return {type:ActionTypes.msgList,payload:data}
+}
+ 
+const getMsgList = () => {
+	return dispatch => {
+		axios.get('/user/msgList').then(res => {
+			dispatch(msgList(res.data))
+		})
+	}
+}
+
+//msgList 
+
+export { register,login,update,tochSuccess,loadData,logoutSuccess }
+export { getMsgList }
 

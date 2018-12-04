@@ -21,7 +21,6 @@ class Genius extends React.Component {
   componentWillMount() {
     const pathname = this.props.location.pathname
     const userType = pathname.slice(1)
-    console.log(userType)
     axios.get(`/user/list?type=genius`).then(res => {
       this.props.tochSuccess(res.data)
     })

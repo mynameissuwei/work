@@ -17,6 +17,10 @@ const PersonInitState = {
 	data:[]
 }
 
+const ChatInitState = {
+	chatMsg:[]
+}
+
 const user = (state = UserInitState,action) => {
 	switch(action.type)  {
 		case ActionsTypes.Rsuccess :
@@ -27,6 +31,8 @@ const user = (state = UserInitState,action) => {
 			return {...state,msg:'',redirectTo:action.payload.type,...action.payload}
 		case ActionsTypes.Xsuccess :
 			return {...state,...action.payload}
+		case ActionsTypes.Fsuccess :
+			return {...state,redirectTo:'/'}
 		case ActionsTypes.error :
 			return {...state,isAuth:false,msg:action.msg}
 		default:
@@ -43,6 +49,15 @@ const person = (state = PersonInitState,action) => {
 	}
 }
 
-export { user,person }
+const chat = (state = ChatInitState,action) => {
+	switch(action.type) {
+		case ActionsTypes.msgList:
+			return {...state,...action.payload}
+		default:
+			return state
+	}
+}
+
+export { user,person,chat }
 
 
