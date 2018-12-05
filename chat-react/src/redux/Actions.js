@@ -1,5 +1,8 @@
 import * as ActionTypes from './ActionTypes.js'
 import axios from 'axios'
+import io from 'socket.io-client';
+
+const socket = io('ws://localhost:8090')
 
 const registerSuccess = (data) => {
 	return {type:ActionTypes.Rsuccess,payload:data}
@@ -41,6 +44,7 @@ const update = (data) => {
 	return dispatch => {
 		axios.post('/user/update',data).then(res => {
 			if(res.status==200&&res.data.code==0) {
+				console.log(res.data.data)
 				dispatch(authSuccess(res.data.data))
 			} else {
 				dispatch(errorMsg(res.data.msg))
@@ -86,13 +90,37 @@ const msgList = (data) => {
 const getMsgList = () => {
 	return dispatch => {
 		axios.get('/user/msgList').then(res => {
-			dispatch(msgList(res.data))
+			console.log(res.data.chatMsg)
+			dispatch(msgList(res.data.chatMsg))
 		})
 	}
 }
 
-//msgList 
+//getMsgList
+
+//sendMsg
+
+const sendMsg = ({from,to,msg}) => {
+	return dispatch => {
+		socket.emit('sendMsg',{from,to,msg})
+	}
+} 
+
+const receiving = (data) => {
+	return {type:ActionTypes.recSuccess,payload:data}
+}
+
+const recMsg = () => {
+	return dispatch => {
+		socket.on('recMsg',(data) => {
+		  dispatch(receiving(data))
+		})
+	}
+}
+
+
+//sendMsg
 
 export { register,login,update,tochSuccess,loadData,logoutSuccess }
-export { getMsgList }
+export { getMsgList,sendMsg,recMsg }
 

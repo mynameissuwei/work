@@ -7,6 +7,7 @@ const Fsuccess = 'LOGOUT_SUCCESS'
 const error = 'ERROR_MSG'
 
 const msgList = 'MSG_LIST'
+const recSuccess = 'REC_SUCCESS'
 
 export { Rsuccess,Lsuccess,Asuccess,Tsuccess,Xsuccess,Fsuccess,error }
-export { msgList }
+export { msgList,recSuccess }

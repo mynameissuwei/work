@@ -19,6 +19,7 @@ class DashBar extends React.Component {
   render() {
     const pathname = this.props.location.pathname
     const userType = this.props.type
+    const userTypeInfo = userType + 'info'
     const data = [
       { 
         path:'/boss',

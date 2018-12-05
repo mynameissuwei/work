@@ -1,5 +1,5 @@
 const getRedirectPath = (action) => {
-	const url = (action.type === 'genius') ? '/genius' : '/boss'
+	var url = (action.type === 'genius') ? '/genius' : '/boss'
 	if(!action.avatar) {
 		url += 'info'
 	}
@@ -7,6 +7,13 @@ const getRedirectPath = (action) => {
 }
 
 const getSkip = (action) => {
+	if(!action.avator) {
+		var url = (action.type === 'genius') ? '/genius' : '/boss'
+		if(!action.avatar) {
+			url += 'info'
+		}
+		return url
+	}
 	const url = (action.type == 'genius') ? '/genius' : '/boss'
 	return url
 }

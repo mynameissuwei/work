@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { WingBlank,WhiteSpace,Card } from 'antd-mobile'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
 import { tochSuccess } from '../../redux/Actions'
@@ -37,21 +38,25 @@ class UserInfo extends React.Component {
   }
 
   handle(v) {
-    this.props.history.push(`chat/${v.user}`)
+    this.props.history.push(`chat/${v._id}`)
     window.location.href = window.location.href
   }
 
   render() {
+    console.log(this.props.data)
+    const props = this.props.data.filter(item => item.avator)
+    console.log(props)
     return(
       <WingBlank>
+        {/* {this.props.data.every(item => item.avator) ? null: <Redirect to='/'></Redirect>} */}
         <WhiteSpace size="lg" />
-        {this.props.data.map(item => 
+        {props.map(item => 
           <div key={item._id}>
             <WhiteSpace size="sm"/>
             <Card onClick={ (e) => this.handle(item,e) }>
               <Card.Header 
               title={item.user}
-              thumb={require(`../../images/${item.avator}.png`)}
+              thumb={require(`./images/${item.avator}.png`)}
               extra={<span>Job:{item.job}</span>}	
               >
               </Card.Header>
