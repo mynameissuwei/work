@@ -19,7 +19,8 @@ const PersonInitState = {
 
 const ChatInitState = {
 	chatMsg:[],
-	unread:0
+	unread:0,
+	users:{}
 }
 
 const user = (state = UserInitState,action) => {
@@ -53,7 +54,7 @@ const person = (state = PersonInitState,action) => {
 const chat = (state = ChatInitState,action) => {
 	switch(action.type) {
 		case ActionsTypes.msgList:
-			return {...state,chatMsg:action.payload,unread:action.payload.length}
+			return {...state,users:action.payload.users,chatMsg:action.payload.msgs,unread:action.payload.length}
 		case ActionsTypes.recSuccess:
 			return {...state,chatMsg:[...state.chatMsg,action.payload],unread:state.unread+1}
 		default:

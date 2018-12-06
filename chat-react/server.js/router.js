@@ -5,6 +5,7 @@ const User = model.getModel('user')
 const Chat = model.getModel('chat')
 const utility = require('utility')
 
+
 const Utility = (pwd) => {
 	return utility.md5(utility.md5(pwd + 'wanghuan'))
 }
@@ -25,8 +26,6 @@ router.post('/update',(req,res) => {
 	})
 })
 
-
-	
 router.use('/info',(req,res) => {
 	const { userid } = req.cookies
 	if(!userid) return res.json({code:1,msg:'no cookie'})
@@ -40,7 +39,6 @@ router.use('/register',(req,res) => {
 	const { user,pwd,type } = req.body
 	User.findOne({user},(e,d) => {
 		if(d) return res.json({code:1,msg:'用户名重复,请从新输入用户名'})
-
 		const userModel = new User({user,type,pwd})
 		userModel.save(function(e,d){
 			if(e) {
@@ -62,15 +60,20 @@ router.use('/login',(req,res) => {
 	})
 })
 
-
 router.use('/msgList',(req,res) => {
-	Chat.find({},(e,d) => {
-		if(!e) {
-			return res.json({code:0,chatMsg:d})
-		}
+	const user = req.cookies.userid
+
+	User.find({},(e,d) => {
+		let users = {}
+		d.forEach(v=>{
+			users[v._id] = {name:v.user,avatar:v.avator}
+		})
+		Chat.find({'$or':[{from:user},{to:user}]},(e,d) => {
+			if(!e) {
+				return res.json({code:0,chatMsg:d,users:users})
+			}
+		})
 	})
 })
-
-
 
 module.exports =  router 

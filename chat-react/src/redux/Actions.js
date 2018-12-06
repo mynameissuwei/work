@@ -20,8 +20,6 @@ const errorMsg = (msg)  => {
 	return {type:ActionTypes.error,msg}
 }
 
-
-
 const register = ({user,pwd,rpwd,type}) => {
 	if(!user||!pwd||!type) {
 		return errorMsg('you should input the intact data')
@@ -57,7 +55,7 @@ const login = ({user,pwd}) => {
 	if(!user||!pwd) {
 		return errorMsg('complete information')
 	}
-	return dispatch=>{
+	return dispatch => {
 		axios.post('/user/login',{user,pwd})
 			.then(res=>{
 				if(res.status==200&&res.data.code==0) {
@@ -83,15 +81,16 @@ const logoutSuccess = () => {
 
 //chat-msg 
 
-const msgList = (data) => {
-	return {type:ActionTypes.msgList,payload:data}
+const msgList = (msgs,users,userId) => {
+	return {type:ActionTypes.msgList,payload:{msgs,users,userId}}
 }
  
 const getMsgList = () => {
-	return dispatch => {
+	return (dispatch,getState) => {
 		axios.get('/user/msgList').then(res => {
-			console.log(res.data.chatMsg)
-			dispatch(msgList(res.data.chatMsg))
+			const userId = getState().user._id
+			console.log(userId)
+			dispatch(msgList(res.data.chatMsg,res.data.users,userId))
 		})
 	}
 }
@@ -117,7 +116,6 @@ const recMsg = () => {
 		})
 	}
 }
-
 
 //sendMsg
 

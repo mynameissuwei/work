@@ -13,8 +13,8 @@ const io = require('socket.io')(server)
 io.on('connection',(socket) => {
 	socket.on('sendMsg',(data) => {
 		const  { from,to,msg } = data
-		const chat_id = [from,to].sort().join('_')
-		Chat.create({chat_id,from,to,content:msg},(e,d) => {
+		const chatid = [from,to].sort().join('_')
+		Chat.create({chatid,from,to,content:msg},(e,d) => {
 			io.emit('recMsg',d)
 		})
 	})

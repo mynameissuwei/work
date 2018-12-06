@@ -18,5 +18,13 @@ const getSkip = (action) => {
 	return url
 }
 
-export { getRedirectPath,getSkip } 
+const getChatId = (userId,targetId) => {
+	return [userId,targetId].sort().join('_')
+}
+
+const getLast = (array) => {
+	return array[array.length - 1]
+}
+
+export { getRedirectPath,getSkip,getChatId,getLast } 
 
