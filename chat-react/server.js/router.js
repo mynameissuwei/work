@@ -79,4 +79,16 @@ router.use('/msgList',(req,res) => {
 	})
 })
 
+router.post('/readMsg',(req,res) => {
+	const userId = req.cookies.userid
+	const {from} = req.body
+	Chat.update({from,to:userId},{'$set':{read:true}},{'multi':true},(err,doc) => {
+		console.log(doc)
+		if(!err) {
+			return res.json({code:0,num:doc.nModified})
+		}
+		return res.json({code:1,msg:'fail'})
+	})
+})
+
 module.exports =  router 

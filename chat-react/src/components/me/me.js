@@ -41,26 +41,28 @@ class Me extends React.Component {
       props.type ? <div>
         <WhiteSpace size='lg'/>
         <WingBlank>
-        <Result
-          img={<img src={require(`../../images/${props.avator}.png`)} style={{width:50}} />}
-          title={props.user}
-          message={userType == 'boss' ? props.company : props.job}
-        />
+          
+          <Result
+            img={<img src={require(`../../images/${props.avator}.png`)} style={{width:50}} />}
+            title={props.user}
+            message={userType == 'boss' ? props.company : props.job}
+          />
+
+          <List renderHeader={() => 'Demand'}>
+            <Item multipleLine>
+              {props.demand}
+            </Item>
+          </List>
+
+          <WhiteSpace size='lg'></WhiteSpace>
+
+          <List onClick={this.logOut}>
+            <Item>
+              Logout
+            </Item>
+          </List>
+
         </WingBlank>
-        <List renderHeader={() => 'Demand'}>
-          <Item multipleLine>
-            {props.demand}
-          </Item>
-        </List>
-
-        <WhiteSpace size='lg'></WhiteSpace>
-
-        <List onClick={this.logOut}>
-          <Item>
-            Logout
-          </Item>
-        </List>
-
       </div> : null
     )
   }

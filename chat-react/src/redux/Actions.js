@@ -118,6 +118,21 @@ const recMsg = () => {
 
 //sendMsg
 
+//readMsg
+const readMessage = ({from,userId,num}) => {
+	return {type:ActionTypes.readSuccess,payload:{from,userId,num}}
+}
+
+const readMsg = (from) => {
+	return async (dispatch,getState) => {
+		const res = await axios.post('/user/readMsg',{from})
+		const userId = getState().user._id
+		if(res.status == 200 && res.code == 0) {
+			dispatch(readMessage({userId,from,num:res.data.num}))
+		}
+	} 
+}
+
 export { register,login,update,tochSuccess,loadData,logoutSuccess }
-export { getMsgList,sendMsg,recMsg }
+export { getMsgList,sendMsg,recMsg,readMsg }
 

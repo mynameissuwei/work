@@ -57,6 +57,12 @@ const chat = (state = ChatInitState,action) => {
 			return {...state,users:action.payload.users,chatMsg:action.payload.msgs,unread:action.payload.msgs.filter(v => !v.read && v.to===action.payload.userId).length}
 		case ActionsTypes.recSuccess:
 			return {...state,chatMsg:[...state.chatMsg,action.payload],unread:state.unread+1}
+		case ActionsTypes.readSuccess:
+			const { from,num } = action.payload
+			return {...state,chatMsg:state.chatMsg.map(v => ({
+				...v,
+				read:v.from?true:v.read
+			})),unread:state.unread - num}
 		default:
 			return state
 	}

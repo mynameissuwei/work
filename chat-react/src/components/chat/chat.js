@@ -1,6 +1,6 @@
 import React from 'react'
 import { List,InputItem,Button,NavBar,Icon,Grid  } from 'antd-mobile'
-import { getMsgList,sendMsg,recMsg } from '../../redux/Actions'
+import { getMsgList,sendMsg,recMsg,readMsg } from '../../redux/Actions'
 import { connect } from 'react-redux'
 import { getChatId } from '../../util'
 import QueueAnim from 'rc-queue-anim'
@@ -9,8 +9,8 @@ import QueueAnim from 'rc-queue-anim'
 
 @connect(
   state => state,
-  { getMsgList,sendMsg,recMsg }
-)
+  { getMsgList,sendMsg,recMsg,readMsg }
+) 
 class Chat extends React.Component { 
   constructor(props) {
     super(props)
@@ -40,6 +40,12 @@ class Chat extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    const to = this.props.match.params.user    
+    console.log(to)
+    this.props.readMsg(to)
+  }
+
   fix = () => {
     setTimeout(() => window.dispatchEvent(new Event('resize'),0))
   } 
@@ -56,10 +62,7 @@ class Chat extends React.Component {
     const Item = List.Item
     const users = this.props.chat.users
     const chatId = getChatId(user,this.props.user._id)
-    console.log(chatId)
-    console.log(this.props.user)
     const chatmsgs = this.props.chat.chatMsg.filter(v=>v.chatid == chatId)
-    console.log(chatmsgs) 
     const emoji = '🤨 🧐 🤓 😎 🤩 😒 😞 😟 🧑 🤒 😷 🤧 🤮 😹 😻 😼 😽 🙀 😿 😾 🤲 👐 🙌 👏 🤝 👍 👎 👊 ✊ 🤛 🤜'.split(' ').map( (v) => ({
       text:v
     }))

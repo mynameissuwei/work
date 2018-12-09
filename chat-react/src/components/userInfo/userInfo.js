@@ -43,12 +43,9 @@ class UserInfo extends React.Component {
   }
 
   render() {
-    console.log(this.props.data)
     const props = this.props.data.filter(item => item.avator)
-    console.log(props)
     return(
       <WingBlank>
-        {/* {this.props.data.every(item => item.avator) ? null: <Redirect to='/'></Redirect>} */}
         <WhiteSpace size="lg" />
         {props.map(item => 
           <div key={item._id}>

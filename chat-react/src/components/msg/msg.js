@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { List, Badge } from 'antd-mobile'
+import { List,Badge,WingBlank,WhiteSpace } from 'antd-mobile'
 import { getLast } from '../../util'
 
 @connect(state => state)
@@ -17,7 +17,6 @@ class Msg extends React.Component {
       user[v.chatid] = user[v.chatid] || []
       user[v.chatid].push(v)
     })
-    console.log(user)
     const Item = List.Item;
     const Brief = Item.Brief;
 
@@ -26,30 +25,31 @@ class Msg extends React.Component {
       const b_last = getLast(b).create_time
       return b_last - a_last
     })
-
     const userId = this.props.user._id
     return (
       <div>
         {value.map(v => {
-          console.log(v)
           const item = getLast(v)
-          const userIdCard =  item.from == userId ? item.from : item.to
+          const userIdCard =  item.from == userId ? item.to : item.from
           const unreadNum = v.filter(v => !v.read && v.to==userId).length
           return (
-            <List key={item._id}>
-              <Item
-                extra={<Badge text={unreadNum}></Badge>}
-                arrow='horizontal'
-                onClick={() => {
-                  this.props.history.push(`/chat/${userIdCard}`)
-                  window.location.href = window.location.href
-                }}
-              >
-                {item.content}
-                <Brief>{this.props.chat.users[userIdCard].name}</Brief> 
-              </Item>
-    
-            </List>
+            <WingBlank key={item._id}>
+              <WhiteSpace size='md'></WhiteSpace>
+              <List>
+                <Item
+                  extra={<Badge text={unreadNum}></Badge>}
+                  arrow='horizontal'
+                  onClick={() => {
+                    this.props.history.push(`/chat/${userIdCard}`)
+                    window.location.href = window.location.href
+                  }}
+                >
+                    {item.content}
+                  <Brief>{this.props.chat.users[userIdCard].name}</Brief> 
+                </Item>
+              </List>
+              <WhiteSpace size='md'></WhiteSpace>
+            </WingBlank>
           )
         })}
       </div>

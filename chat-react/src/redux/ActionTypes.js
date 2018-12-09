@@ -8,6 +8,7 @@ const error = 'ERROR_MSG'
 
 const msgList = 'MSG_LIST'
 const recSuccess = 'REC_SUCCESS'
+const readSuccess = 'RED_SUCCESS'
 
 export { Rsuccess,Lsuccess,Asuccess,Tsuccess,Xsuccess,Fsuccess,error }
-export { msgList,recSuccess }
+export { msgList,recSuccess,readSuccess }
