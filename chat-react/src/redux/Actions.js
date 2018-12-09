@@ -89,7 +89,6 @@ const getMsgList = () => {
 	return (dispatch,getState) => {
 		axios.get('/user/msgList').then(res => {
 			const userId = getState().user._id
-			console.log(userId)
 			dispatch(msgList(res.data.chatMsg,res.data.users,userId))
 		})
 	}

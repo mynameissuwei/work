@@ -54,7 +54,7 @@ const person = (state = PersonInitState,action) => {
 const chat = (state = ChatInitState,action) => {
 	switch(action.type) {
 		case ActionsTypes.msgList:
-			return {...state,users:action.payload.users,chatMsg:action.payload.msgs,unread:action.payload.length}
+			return {...state,users:action.payload.users,chatMsg:action.payload.msgs,unread:action.payload.msgs.filter(v => !v.read && v.to===action.payload.userId).length}
 		case ActionsTypes.recSuccess:
 			return {...state,chatMsg:[...state.chatMsg,action.payload],unread:state.unread+1}
 		default:

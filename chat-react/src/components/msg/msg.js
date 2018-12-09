@@ -17,6 +17,7 @@ class Msg extends React.Component {
       user[v.chatid] = user[v.chatid] || []
       user[v.chatid].push(v)
     })
+    console.log(user)
     const Item = List.Item;
     const Brief = Item.Brief;
 
@@ -45,7 +46,7 @@ class Msg extends React.Component {
                 }}
               >
                 {item.content}
-                <Brief>{this.props.chat.users[userIdCard].name}</Brief>
+                <Brief>{this.props.chat.users[userIdCard].name}</Brief> 
               </Item>
     
             </List>

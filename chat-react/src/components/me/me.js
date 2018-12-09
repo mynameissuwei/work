@@ -47,7 +47,7 @@ class Me extends React.Component {
           message={userType == 'boss' ? props.company : props.job}
         />
         </WingBlank>
-        <List renderHeader={() => 'brief'}>
+        <List renderHeader={() => 'Demand'}>
           <Item multipleLine>
             {props.demand}
           </Item>

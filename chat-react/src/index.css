@@ -4,11 +4,6 @@
   bottom: 0px;
   width: 100%;
 }
-
-#chat-page {
-
-}
-
 #chat-page .chat-me .am-list-extra{
   flex-basis:auto;
   height:80%;

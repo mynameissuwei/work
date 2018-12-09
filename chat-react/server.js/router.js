@@ -5,6 +5,8 @@ const User = model.getModel('user')
 const Chat = model.getModel('chat')
 const utility = require('utility')
 
+// Chat.remove({},(err,doc)=>{})
+
 
 const Utility = (pwd) => {
 	return utility.md5(utility.md5(pwd + 'wanghuan'))
@@ -55,6 +57,7 @@ router.use('/login',(req,res) => {
 	const { user,pwd } = req.body
 	User.findOne({user,pwd},{'pwd':0},(err,doc) => {
 		if(!doc) return res.json({code:1,msg:'please register'})
+			console.log(doc)
 			res.cookie('userid',doc._id)
 			return res.json({code:0,data:doc})
 	})

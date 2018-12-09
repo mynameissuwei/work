@@ -23,7 +23,7 @@ import './index.css'
 
 const store = createStore(reducers,compose(
   applyMiddleware(thunk),
-	window.devToolsExtension?window.devToolsExtension():() => {}
+	window.devToolsExtension?window.devToolsExtension():f => f
 ))
 
   

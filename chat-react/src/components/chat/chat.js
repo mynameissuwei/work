@@ -3,6 +3,7 @@ import { List,InputItem,Button,NavBar,Icon,Grid  } from 'antd-mobile'
 import { getMsgList,sendMsg,recMsg } from '../../redux/Actions'
 import { connect } from 'react-redux'
 import { getChatId } from '../../util'
+import QueueAnim from 'rc-queue-anim'
 
 
 
@@ -28,6 +29,7 @@ class Chat extends React.Component {
 
     this.setState({
       text:'',
+      show:false
     })     
   } 
 
@@ -54,18 +56,14 @@ class Chat extends React.Component {
     const Item = List.Item
     const users = this.props.chat.users
     const chatId = getChatId(user,this.props.user._id)
+    console.log(chatId)
+    console.log(this.props.user)
     const chatmsgs = this.props.chat.chatMsg.filter(v=>v.chatid == chatId)
+    console.log(chatmsgs) 
     const emoji = '🤨 🧐 🤓 😎 🤩 😒 😞 😟 🧑 🤒 😷 🤧 🤮 😹 😻 😼 😽 🙀 😿 😾 🤲 👐 🙌 👏 🤝 👍 👎 👊 ✊ 🤛 🤜'.split(' ').map( (v) => ({
       text:v
     }))
 
-    const data = Array.from(new Array(9)).map((_val, i) => ({
-      icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-      text: `name${i}`,
-    }));
-    console.log(chatmsgs)
-    // console.log(this.props.chat.chatMsg)
-    console.log(this.state.show)
     return(
       <div>
 
@@ -77,24 +75,27 @@ class Chat extends React.Component {
             {users[user]?users[user].name:null}
           </NavBar>
 
-          {this.props.chat.chatMsg.map(v => {
-            const avatar = require(`../images/${users[v.from].avatar}.png`)
-            return  v.from==user ? (
-              <List key={v._id}>
-                <Item
-                  thumb={avatar}
-                >{v.content}</Item>
-              </List>
-            ) : (
-              <List key={v._id}>
-                <Item
-                  extra={<img src={avatar}/>}
-                  className='chat-me'
-                >{v.content}</Item>
-              </List>
-            )
-            })
-        }  
+          <QueueAnim type='scale' delay={100}>
+            {chatmsgs.map(v => {
+              const avatar = require(`../images/${users[v.from].avatar}.png`)
+              return  v.from==user ? (
+                <List key={v._id}>
+                  <Item
+                    thumb={avatar}
+                  >{v.content}</Item>
+                </List>
+              ) : (
+                <List key={v._id}>
+                  <Item
+                    extra={<img src={avatar}/>}
+                    className='chat-me'
+                  >{v.content}</Item>
+                </List>
+              )
+              })
+            }
+          </QueueAnim>  
+
         </div>
 
         <div className='stick-footer'>
@@ -120,7 +121,7 @@ class Chat extends React.Component {
           carouselMaxRow={4}
           onClick={(e) => {
             this.setState({
-              text:this.state.text + e.text
+              text:this.state.text + e.text,
             })
           }}
         ></Grid> : null}
