@@ -1,9 +1,9 @@
-.stick-footer {
+/* .stick-footer {
   z-index:10;
   position: fixed;
   bottom: 0px;
   width: 100%;
-}
+} */
 #chat-page .chat-me .am-list-extra{
   flex-basis:auto;
   height:80%;
@@ -11,4 +11,23 @@
 #chat-page .chat-me .am-list-content{
   padding-right:15px;
   text-align:right;
+}
+#chat-page .am-navbar.am-navbar-dark{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+#chat-page .main{
+  position: fixed;
+  width: 100%;
+  overflow: auto;
+  margin-top: 45px;
+  margin-bottom: 45px;
+  height: calc(100vh - 90px);
+}
+#chat-page .stick-footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

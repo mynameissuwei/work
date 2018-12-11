@@ -68,17 +68,16 @@ class Chat extends React.Component {
     }))
 
     return(
-      <div>
+      <div id='chat-page'>
 
-        <div id='chat-page'>
-          <NavBar mode='dark'
+        <NavBar mode='dark'
             icon={<Icon type="left" />}
             onLeftClick={() => this.props.history.goBack()}
           >
             {users[user]?users[user].name:null}
           </NavBar>
 
-          <QueueAnim type='scale' delay={100}>
+        <QueueAnim type='scale' delay={100} className='main'>
             {chatmsgs.map(v => {
               const avatar = require(`../images/${users[v.from].avatar}.png`)
               return  v.from==user ? (
@@ -99,8 +98,6 @@ class Chat extends React.Component {
             }
           </QueueAnim>  
 
-        </div>
-
         <div className='stick-footer'>
           <List>
             <InputItem 
@@ -119,19 +116,18 @@ class Chat extends React.Component {
             }></InputItem>
           </List>
           {this.state.show ? <Grid data={emoji}
-          columnNum={9}
-          isCarousel={true}
-          carouselMaxRow={4}
-          onClick={(e) => {
-            this.setState({
-              text:this.state.text + e.text,
-            })
-          }}
-        ></Grid> : null}
+            columnNum={9}
+            isCarousel={true}
+            carouselMaxRow={4}
+            onClick={(e) => {
+              this.setState({
+                text:this.state.text + e.text,
+              })
+            }}
+          ></Grid> : null}
         </div>
-
       </div>
-      )  
+    )  
   }
 }
 

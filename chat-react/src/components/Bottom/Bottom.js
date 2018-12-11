@@ -54,22 +54,12 @@ class TabBarExample extends React.Component {
               <TabBar.Item
                 title={item.title}
                 key="Life"
-                icon={<div style={{
-                  width: '22px',
-                  height: '22px',
-                  background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat' }}
-                />
-                }
-                selectedIcon={<div style={{
-                  width: '22px',
-                  height: '22px',
-                  background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
-                />
-                }
+                icon={{uri:require(`./images/${item.avator}.png`)}}
+                selectedIcon={{uri:require(`./images/${item.selAvator}.png`)}}
+                badge={item.path == '/msg' ? this.props.unread : 0}
                 selected={
                   this.state.selectedTab === 'blueTab'
                 }
-                badge={item.path == '/msg' ? this.props.unread : 0}
                 onPress={() => {
                   this.setState({
                     selectedTab: 'blueTab',

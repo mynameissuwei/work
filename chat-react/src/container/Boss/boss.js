@@ -27,20 +27,26 @@ class DashBar extends React.Component {
         title:'Genius List',
         icon:'boss',
         key:1,
-        hide:userType != 'boss'
+        hide:userType != 'boss',
+        avator:'q',
+        selAvator:'qq'
       },
       {
         path:'/genius',
         title:'Boss List',
         icon:'human',
         key:2,
-        hide:userType != 'genius'
+        hide:userType != 'genius',
+        avator:'q',
+        selAvator:'qq'
       },
       {
         path:'/msg',
         key:3,
         icon:'classic',
         title:'Message List',
+        avator:'w',
+        selAvator:'ww'
       },
       {
         path:'/me',
@@ -48,6 +54,8 @@ class DashBar extends React.Component {
         icon:'my',
         key:4,
         title:'Me',
+        avator:'e',
+        selAvator:'ee'
       }
     ]
 

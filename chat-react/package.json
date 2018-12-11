@@ -76,7 +76,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "tes": "jest"
+    "tes": "jest",
+    "server":"nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
