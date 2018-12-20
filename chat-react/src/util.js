@@ -14,7 +14,7 @@ const getSkip = (action) => {
 		}
 		return url
 	}
-	const url = (action.type == 'genius') ? '/genius' : '/boss'
+  url = (action.type === 'genius') ? '/genius' : '/boss'
 	return url
 }
 

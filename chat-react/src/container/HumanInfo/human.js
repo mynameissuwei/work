@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { List, InputItem,NavBar,ImagePicker,SegmentedControl,WingBlank,WhiteSpace,Button,TextareaItem } from 'antd-mobile';
 import { createForm } from 'rc-form';

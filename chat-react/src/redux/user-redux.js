@@ -1,4 +1,3 @@
-import axios from 'axios'
 import * as ActionsTypes from './ActionTypes'
 import { getRedirectPath,getSkip } from '../util'
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS'

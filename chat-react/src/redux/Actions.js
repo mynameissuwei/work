@@ -23,12 +23,12 @@ const errorMsg = (msg)  => {
 const register = ({user,pwd,rpwd,type}) => {
 	if(!user||!pwd||!type) {
 		return errorMsg('you should input the intact data')
-	} else if(pwd != rpwd) {
+	} else if(pwd !== rpwd) {
 		return errorMsg('pwd and rpwd should be the same')
 	} else {
 		return dispatch => {
 			axios.post('/user/register',{user,pwd,type}).then(res => {
-				if(res.status == 200 && res.data.code == 0) {
+				if(res.status === 200 && res.data.code === 0) {
 					dispatch(registerSuccess({user,pwd,type}))
 				} else {
 					dispatch(errorMsg(res.data.msg))
@@ -41,7 +41,7 @@ const register = ({user,pwd,rpwd,type}) => {
 const update = (data) => {
 	return dispatch => {
 		axios.post('/user/update',data).then(res => {
-			if(res.status==200&&res.data.code==0) {
+			if(res.status===200&&res.data.code===0) {
 				console.log(res.data.data)
 				dispatch(authSuccess(res.data.data))
 			} else {
@@ -58,7 +58,7 @@ const login = ({user,pwd}) => {
 	return dispatch => {
 		axios.post('/user/login',{user,pwd})
 			.then(res=>{
-				if(res.status==200&&res.data.code==0) {
+				if(res.status===200&&res.data.code===0) {
 					dispatch(LoginSuccess(res.data.data))
 				}else{
 					dispatch(errorMsg(res.data.msg))
@@ -127,7 +127,7 @@ const readMsg = (from) => {
 	return async (dispatch,getState) => {
 		const res = await axios.post('/user/readMsg',{from})
 		const userId = getState().user._id
-		if(res.status == 200 && res.code == 0) {
+		if(res.status === 200 && res.code === 0) {
 			dispatch(readMessage({userId,from,num:res.data.num}))
 		}
 	} 
